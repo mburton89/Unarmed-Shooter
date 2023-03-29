@@ -16,10 +16,10 @@ MonoBehaviour:
   - dialogueText: RUMBLE RUMBLE
     image: {fileID: 0}
   - dialogueText: Huh?
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 9125c204f566db048a92ebcb64d9d14a, type: 3}
   - dialogueText: SCREECH
     image: {fileID: 0}
   - dialogueText: Oop gotta go kill them
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
   - dialogueText: Let's do this!
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: ec03f79379868c642b48ae5ddc821b6d, type: 3}
