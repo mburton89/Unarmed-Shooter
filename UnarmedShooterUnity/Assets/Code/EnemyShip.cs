@@ -9,12 +9,15 @@ public class EnemyShip : Ship
 
     void Start()
     {
-        target = FindObjectOfType<PlayerShip>().transform;
+        if (FindObjectOfType<PlayerShip>() != null)
+        {
+            target = FindObjectOfType<PlayerShip>().transform;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerShip>())
+        if (collision.gameObject.GetComponent<PlayerShip>() && !canFireAtPlayer)
         {
             collision.gameObject.GetComponent<PlayerShip>().TakeDamage(1);
             Explode();
@@ -34,9 +37,12 @@ public class EnemyShip : Ship
 
     void FlyTowardPlayer()
     {
-        Vector2 directionToFace = new Vector2(
+        if(target != null && canMove)
+        {
+            Vector2 directionToFace = new Vector2(
             target.position.x - transform.position.x, target.position.y - transform.position.y);
-        transform.up = directionToFace;
-        Thrust();
+            transform.up = directionToFace;
+            Thrust();
+        }
     }
 }

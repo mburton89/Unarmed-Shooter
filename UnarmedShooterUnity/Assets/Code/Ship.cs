@@ -14,6 +14,8 @@ public class Ship : MonoBehaviour
     public float fireRate;
     public float projectileSpeed;
 
+    public bool canMove;
+
     [HideInInspector] public float currentSpeed;
     [HideInInspector] public int currentArmor;
 
@@ -37,8 +39,11 @@ public class Ship : MonoBehaviour
 
     public void Thrust()
     {
-        rigidbody2D.AddForce(transform.up * acceleration);
-        thrustParticles.Emit(1);
+        if (canMove)
+        {
+            rigidbody2D.AddForce(transform.up * acceleration);
+            thrustParticles.Emit(1);
+        }  
     }
     public void FireProjectile()
     {
