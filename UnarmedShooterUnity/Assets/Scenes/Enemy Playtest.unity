@@ -499,9 +499,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 158000703, guid: 35ceb4694dd686d4283641f8530d7407, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 158000704, guid: 35ceb4694dd686d4283641f8530d7407, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3839687135679874368, guid: 35ceb4694dd686d4283641f8530d7407, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3839687135679874368, guid: 35ceb4694dd686d4283641f8530d7407, type: 3}
       propertyPath: m_LocalPosition.x
@@ -550,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 4340228853559386720, guid: 35ceb4694dd686d4283641f8530d7407, type: 3}
       propertyPath: waypointList
       value: 
-      objectReference: {fileID: 1825825411}
+      objectReference: {fileID: 1825825413}
     - target: {fileID: 4340228853559386720, guid: 35ceb4694dd686d4283641f8530d7407, type: 3}
       propertyPath: distanceThreshold
       value: 1
@@ -608,7 +616,7 @@ Transform:
   m_Children:
   - {fileID: 519420032}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &996484243
 GameObject:
@@ -676,7 +684,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1004388751
 GameObject:
@@ -5963,7 +5971,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1768531914
 GameObject:
@@ -6061,7 +6069,7 @@ RectTransform:
   - {fileID: 1065631267}
   - {fileID: 1451653351}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6134,11 +6142,17 @@ MonoBehaviour:
   spawnPivot: {fileID: 628169312}
   currentWave: 1
   startingNumberOfShips: 0
---- !u!1 &1825825411 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6530880350001097377, guid: 2f7a81df5fdb55b43a033de16d76e065, type: 3}
+--- !u!114 &1825825413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 614483136221407658, guid: 2f7a81df5fdb55b43a033de16d76e065, type: 3}
   m_PrefabInstance: {fileID: 6530880351684200482}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e42ba8c7c63aa40bdf6c3f5704efde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1205711745308461656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6156,7 +6170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1205711744860227666, guid: cfdb31ba8178dc44abcd61abf4dfa3f3, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1205711744860227666, guid: cfdb31ba8178dc44abcd61abf4dfa3f3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6207,13 +6221,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 614483136221407658, guid: 2f7a81df5fdb55b43a033de16d76e065, type: 3}
+      propertyPath: waypointSize
+      value: 0.367
+      objectReference: {fileID: 0}
     - target: {fileID: 6530880350001097377, guid: 2f7a81df5fdb55b43a033de16d76e065, type: 3}
       propertyPath: m_Name
-      value: Waypoint Test
+      value: Waypoint
       objectReference: {fileID: 0}
     - target: {fileID: 6530880350001097382, guid: 2f7a81df5fdb55b43a033de16d76e065, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6530880350001097382, guid: 2f7a81df5fdb55b43a033de16d76e065, type: 3}
       propertyPath: m_LocalPosition.x
