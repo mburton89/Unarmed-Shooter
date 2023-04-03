@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class EnemyShip : Ship
 {
-    Transform target;
+    [HideInInspector] public Transform target;
+    public bool doesFollowPlayer = true;
     public bool canFireAtPlayer;
+    public int damage = 1;
 
     void Start()
     {
-        if (FindObjectOfType<PlayerShip>() != null)
+        if (doesFollowPlayer && FindObjectOfType<PlayerShip>() != null)
         {
             target = FindObjectOfType<PlayerShip>().transform;
         }
@@ -19,7 +21,7 @@ public class EnemyShip : Ship
     {
         if (collision.gameObject.GetComponent<PlayerShip>() && !canFireAtPlayer)
         {
-            collision.gameObject.GetComponent<PlayerShip>().TakeDamage(1);
+            collision.gameObject.GetComponent<PlayerShip>().TakeDamage(damage);
             Explode();
         }
     }
