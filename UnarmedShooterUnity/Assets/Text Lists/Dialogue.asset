@@ -23,3 +23,6 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
   - dialogueText: Let's do this!
     image: {fileID: 21300000, guid: ec03f79379868c642b48ae5ddc821b6d, type: 3}
+  - dialogueText: I wonder how this textbox will deal with long dialogue. I will
+      try to type out at least three lines of text.
+    image: {fileID: 21300000, guid: ec03f79379868c642b48ae5ddc821b6d, type: 3}
