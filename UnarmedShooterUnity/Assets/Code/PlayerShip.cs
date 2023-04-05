@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerShip : Ship
 {
     bool isBoostingFromKill;
+    bool trackVelocity;
+    Vector2 lastVelocity;
 
     private void Start()
     {
         isBoostingFromKill = false;
+        trackVelocity = true;
     }
     private void FixedUpdate()
     {
@@ -22,6 +26,11 @@ public class PlayerShip : Ship
     {
         FollowMouse();
         HandleInput();
+
+        if (trackVelocity)
+        {
+            lastVelocity = rb.velocity;
+        }
     }
 
     void HandleInput()
@@ -42,6 +51,7 @@ public class PlayerShip : Ship
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // collision with enemy
         if (collision.gameObject.GetComponent<EnemyShip>())
         {
             // calculate damage to deal based on velocity vector
@@ -52,6 +62,7 @@ public class PlayerShip : Ship
                 damageToDeal *= -1;
             }
             collision.gameObject.GetComponent<EnemyShip>().TakeDamage(damageToDeal);
+            print("Damage dealt by player: " + damageToDeal);
 
 
             // take & apply knockback when hitting stuff, unless last hit kills the enemy
@@ -69,6 +80,22 @@ public class PlayerShip : Ship
             }
 
             collision.gameObject.GetComponent<EnemyShip>().rb.AddForce(rb.velocity * -5, ForceMode2D.Impulse);
+        }
+
+        // collision with wall (layer ID is 6)
+        if (collision.gameObject.layer == 6)
+        {
+            trackVelocity = false;
+
+            // screen shake & knockback when hitting a wall
+            // multiply default screenshake values by speed, which should max out at 10
+            ScreenShakeManager.Instance.transform.DOShakePosition((float)(0.04 * (lastVelocity.magnitude / 2)), (float)(0.3 * (lastVelocity.magnitude / 2)), (int)(9 * (lastVelocity.magnitude / 2)), 1 * (lastVelocity.magnitude / 2), false, true);
+
+            // check for which velocity vector is greater, then apply knockback to only that vector
+            Vector2 directionToBounce = (Vector2)transform.position - collision.contacts[0].point;
+            rb.AddForce((directionToBounce * lastVelocity.magnitude) * 2, ForceMode2D.Impulse);
+
+            trackVelocity = true;
         }
     }
 

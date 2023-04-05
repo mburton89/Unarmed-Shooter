@@ -40,13 +40,14 @@ public class EnemyShip : Ship
         if (collision.gameObject.GetComponent<PlayerShip>())
         {
             // calculate damage to deal based on velocity vector
-            var damageToDeal = (int)Mathf.Round(rb.velocity.x + rb.velocity.y) * 5;
+            var damageToDeal = (int)Mathf.Round(rb.velocity.x + rb.velocity.y) / 5;
             if (damageToDeal < 0)
             {
                 // make the damage value positive if it's not (flying downward)
                 damageToDeal *= -1;
             }
             collision.gameObject.GetComponent<PlayerShip>().TakeDamage(damageToDeal);
+            print("Damage dealt by enemy: " + damageToDeal);
         }
     }
 }
