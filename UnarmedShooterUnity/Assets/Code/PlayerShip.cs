@@ -8,6 +8,8 @@ public class PlayerShip : Ship
     {
         FollowMouse();
         HandleInput();
+
+        SpeedGauge.Instance.speedtext.SetText((rigidbody2D.velocity.magnitude * 10).ToString("#.##") + " MPH");
     }
 
     void HandleInput()
