@@ -16,9 +16,18 @@ public class PlayerShip : Ship
         {
             Thrust();
         }
-        if (Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            FireProjectile();
+            //checks to see if boost is available
+            if (currentBoostEnergy == maxBoost)
+            {
+                StartCoroutine(Boost());
+            }
+            else
+            {
+                //replace with some sort of UI interaction/sound alert
+                print("Boost not ready");
+            }
         }
     }
     void FollowMouse()
@@ -28,5 +37,16 @@ public class PlayerShip : Ship
         Vector2 directionToFace = new Vector2(
             mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         transform.up = directionToFace;
+    }
+
+    private IEnumerator Boost()
+    {
+        maxSpeed += boostSpeed;
+        acceleration += boostSpeed;
+        currentBoostEnergy = 0;
+        boostUpSent = false;
+        yield return new WaitForSeconds(0.3f);
+        maxSpeed -= boostSpeed;
+        acceleration -= boostSpeed;
     }
 }

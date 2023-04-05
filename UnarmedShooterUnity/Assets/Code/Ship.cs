@@ -13,16 +13,22 @@ public class Ship : MonoBehaviour
     public int maxArmor;
     public float fireRate;
     public float projectileSpeed;
+    public int maxBoost;
+    [HideInInspector] public int currentBoostEnergy;
+    public int boostSpeed;
 
     [HideInInspector] public float currentSpeed;
     [HideInInspector] public int currentArmor;
 
     [HideInInspector] public bool canShoot;
+    [HideInInspector] public bool boostUpSent;
 
     [HideInInspector] ParticleSystem thrustParticles;
     private void Awake()
     {
         currentArmor = maxArmor;
+        currentBoostEnergy = maxBoost;
+        boostUpSent = true;
         canShoot = true;
         thrustParticles = GetComponentInChildren<ParticleSystem>();
     }
@@ -32,6 +38,17 @@ public class Ship : MonoBehaviour
         if (rigidbody2D.velocity.magnitude > maxSpeed)
         {
             rigidbody2D.velocity = rigidbody2D.velocity.normalized * maxSpeed;
+        }
+        //increments up current boost energy if not yet full
+        if (currentBoostEnergy < maxBoost)
+        {
+            currentBoostEnergy++;
+        }
+        //Sends a message when boost gauge is full and makes sure it hasnt already sent the boost ready message
+        if ((currentBoostEnergy == maxBoost) && (!boostUpSent))
+        {
+            print("Boost now ready");
+            boostUpSent = true;
         }
     }
 
