@@ -11,18 +11,21 @@ public class Ship : MonoBehaviour
     public float acceleration;
     public float maxSpeed;
     public int maxArmor;
+    public int maxHealth;
+
     public float fireRate;
     public float projectileSpeed;
 
     [HideInInspector] public float currentSpeed;
     [HideInInspector] public int currentArmor;
-
+    [HideInInspector] public int currentHealth;
     [HideInInspector] public bool canShoot;
 
     [HideInInspector] ParticleSystem thrustParticles;
     private void Awake()
     {
         currentArmor = maxArmor;
+        currentHealth = maxHealth;
         canShoot = true;
         thrustParticles = GetComponentInChildren<ParticleSystem>();
     }
@@ -59,15 +62,27 @@ public class Ship : MonoBehaviour
     public void TakeDamage(int damageToGive)
     {
         //TODO: play getHitSound
-        currentArmor -= damageToGive;
-        if (currentArmor <= 0)
+        
+        if(currentArmor>0)
+        {
+            currentArmor = currentArmor - damageToGive;
+        }
+        else
+        {
+            currentHealth = currentHealth - damageToGive;
+        }
+
+        Debug.Log("Armor : " + currentArmor + " -  Health : " + currentHealth);
+
+
+        if (currentHealth <= 0)
         {
             Explode();
         }
 
         if (GetComponent<PlayerShip>())
         {
-            HUD.Instance.DisplayHealth(currentArmor, maxArmor);
+            HUD.Instance.DisplayHealth(currentArmor, currentHealth);
         }
     }
     public void Explode()
