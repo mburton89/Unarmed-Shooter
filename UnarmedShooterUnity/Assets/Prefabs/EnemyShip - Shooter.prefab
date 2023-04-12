@@ -4982,17 +4982,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e501eec1ee95a004da6e163f036df662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   rb: {fileID: 3839687135679874374}
+=======
+  rb: {fileID: 0}
+>>>>>>> Stashed changes
   projectilePrefab: {fileID: 7892308106377166166, guid: 0b8c770ae29e345429d194a8011b767b, type: 3}
   projectileSpawnPoint: {fileID: 3839687136694837675}
   acceleration: 1
   maxSpeed: 3
+<<<<<<< Updated upstream
   maxArmor: 225
+=======
+  maxArmor: 180
+  maxHealth: 180
+>>>>>>> Stashed changes
   fireRate: 2
   projectileSpeed: 60
+  maxBoost: 0
+  currentBoostEnergy: 0
+  boostSpeed: 0
   currentSpeed: 0
   currentArmor: 0
   canShoot: 0
+  incrementBoost: 0
   canFireAtPlayer: 1
 --- !u!1 &3839687136694837674
 GameObject:

@@ -55,7 +55,7 @@ public class PlayerShip : Ship
         if (collision.gameObject.GetComponent<EnemyShip>())
         {
             // calculate damage to deal based on velocity vector
-            var damageToDeal = (int)Mathf.Round(rb.velocity.x + rb.velocity.y) * 10;
+            var damageToDeal = (int)Mathf.Round(rb.velocity.x + rb.velocity.y);
             if (damageToDeal < 0)
             {
                 // make the damage value positive if it's not (flying downward)
@@ -68,7 +68,7 @@ public class PlayerShip : Ship
             // take & apply knockback when hitting stuff, unless last hit kills the enemy
             if (collision.gameObject.GetComponent<EnemyShip>().currentArmor > 0)
             {
-                rb.AddForce(rb.velocity * -5, ForceMode2D.Impulse);
+                rb.AddForce(rb.velocity * -1.5f, ForceMode2D.Impulse);
             }
 
             // apply speed boost on kill
@@ -79,7 +79,7 @@ public class PlayerShip : Ship
                 StartCoroutine(ApplySpeedBoostOnKill(timeToApplyBoost));
             }
 
-            collision.gameObject.GetComponent<EnemyShip>().rb.AddForce(rb.velocity * -5, ForceMode2D.Impulse);
+            collision.gameObject.GetComponent<EnemyShip>().rb.AddForce(rb.velocity * -1.5f, ForceMode2D.Impulse);
         }
 
         // collision with wall (layer ID is 6)
