@@ -20,14 +20,14 @@ public class Ship : MonoBehaviour
     public float fireRate;
     public float projectileSpeed;
     public int maxBoost;
-    [HideInInspector] public int currentBoostEnergy;
+    public int currentBoostEnergy;
     public int boostSpeed;
 
     [HideInInspector] public float currentSpeed;
     [HideInInspector] public int currentArmor;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool canShoot;
-    [HideInInspector] public bool boostUpSent;
+    public bool boostUpSent;
 
     [HideInInspector] ParticleSystem thrustParticles;
     private void Awake()
@@ -35,7 +35,7 @@ public class Ship : MonoBehaviour
         currentArmor = maxArmor;
         rb = GetComponent<Rigidbody2D>();
         currentBoostEnergy = maxBoost;
-        boostUpSent = true;
+        boostUpSent = false;
         currentHealth = maxHealth;
         canShoot = true;
         thrustParticles = GetComponentInChildren<ParticleSystem>();
@@ -53,8 +53,9 @@ public class Ship : MonoBehaviour
             currentBoostEnergy++;
         }
         //Sends a message when boost gauge is full and makes sure it hasnt already sent the boost ready message
-        if ((currentBoostEnergy == maxBoost) && (!boostUpSent))
+        if ((currentBoostEnergy >= maxBoost) && (!boostUpSent))
         {
+            currentBoostEnergy = maxBoost;
             print("Boost now ready");
             boostUpSent = true;
         }
@@ -94,7 +95,7 @@ public class Ship : MonoBehaviour
             currentHealth = currentHealth - damageToGive;
         }
 
-        Debug.Log("Armor : " + currentArmor + " -  Health : " + currentHealth);
+        //Debug.Log("Armor : " + currentArmor + " -  Health : " + currentHealth);
 
 
         if (currentHealth <= 0)

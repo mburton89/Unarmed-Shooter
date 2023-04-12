@@ -41,6 +41,19 @@ public class PlayerShip : Ship
         {
             Thrust();
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //checks to see if boost is available
+            if (currentBoostEnergy == maxBoost)
+            {
+                StartCoroutine(Boost());
+            }
+            else
+            {
+                //replace with some sort of UI interaction/sound alert
+                print("Boost not ready");
+            }
+        }
     }
     void FollowMouse()
     {
@@ -108,5 +121,17 @@ public class PlayerShip : Ship
         yield return new WaitForSeconds(0.75f);
         isBoostingFromKill = false;
         Debug.Log("Boost has ended.");
+    }
+
+    private IEnumerator Boost()
+    {
+        maxSpeed += boostSpeed;
+        acceleration += boostSpeed;
+        currentBoostEnergy = 0;
+        boostUpSent = false;
+        yield return new WaitForSeconds(0.3f);
+        maxSpeed -= boostSpeed;
+        acceleration -= boostSpeed;
+        yield break;
     }
 }
