@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    public Rigidbody2D rigidbody2D;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
 
@@ -39,9 +39,9 @@ public class Ship : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rb.velocity.magnitude > maxSpeed)
+        if (rigidbody2D.velocity.magnitude > maxSpeed)
         {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
+            rigidbody2D.velocity = rigidbody2D.velocity.normalized * maxSpeed;
         }
         //increments up current boost energy if not yet full
         if (currentBoostEnergy < maxBoost)
@@ -58,7 +58,7 @@ public class Ship : MonoBehaviour
 
     public void Thrust()
     {
-        rb.AddForce(transform.up * acceleration);
+        rigidbody2D.AddForce(transform.up * acceleration);
         thrustParticles.Emit(1);
     }
     public void FireProjectile()
