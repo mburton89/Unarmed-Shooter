@@ -4988,11 +4988,13 @@ MonoBehaviour:
   acceleration: 1
   maxSpeed: 3
   maxArmor: 3
+  maxHealth: 3
   fireRate: 2
   projectileSpeed: 60
   canMove: 1
   currentSpeed: 0
   currentArmor: 0
+  currentHealth: 0
   canShoot: 0
   canFireAtPlayer: 1
 --- !u!1 &3839687136694837674

@@ -7,8 +7,11 @@ using TMPro;
 public class HUD : MonoBehaviour
 {
     public static HUD Instance;
+    public List<Image> miniHealthBars;
+    public List<Image> miniShieldBars;
 
-    public Image healthBarFill;
+
+    
     public TextMeshProUGUI waveText;
 
     private void Awake()
@@ -16,10 +19,22 @@ public class HUD : MonoBehaviour
         Instance = this;
     }
 
-    public void DisplayHealth(int currentArmor, int maxArmor)
+    public void DisplayHealth(int currentArmor, int currentHealth)
     {
-        float healthAmount = (float)currentArmor / (float)maxArmor;
-        healthBarFill.fillAmount = healthAmount;
+        for(int i = 0; i < miniHealthBars.Count; i++)
+        {
+            bool isEnabled = i < currentHealth;
+
+            miniHealthBars[i].enabled = isEnabled;
+        }
+
+        for (int i = 0; i < miniShieldBars.Count; i++)
+        {
+            bool isEnabled = i < currentArmor;
+
+            miniShieldBars[i].enabled = isEnabled;
+        }
+
     }
 
     public void DisplayWave(int currentWave)
