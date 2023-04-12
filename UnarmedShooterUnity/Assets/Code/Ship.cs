@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Rigidbody2D))]
 public class Ship : MonoBehaviour
 {
-    public Rigidbody2D rigidbody2D;
+    public Rigidbody2D rb;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
 
@@ -29,7 +31,7 @@ public class Ship : MonoBehaviour
     private void Awake()
     {
         currentArmor = maxArmor;
-
+        rb = GetComponent<Rigidbody2D>();
         currentBoostEnergy = maxBoost;
         boostUpSent = true;
         currentHealth = maxHealth;
@@ -39,9 +41,9 @@ public class Ship : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rigidbody2D.velocity.magnitude > maxSpeed)
+        if (rb.velocity.magnitude > maxSpeed)
         {
-            rigidbody2D.velocity = rigidbody2D.velocity.normalized * maxSpeed;
+            rb.velocity = rb.velocity.normalized * maxSpeed;
         }
         //increments up current boost energy if not yet full
         if (currentBoostEnergy < maxBoost)
@@ -58,7 +60,7 @@ public class Ship : MonoBehaviour
 
     public void Thrust()
     {
-        rigidbody2D.AddForce(transform.up * acceleration);
+        rb.AddForce(transform.up * acceleration);
         thrustParticles.Emit(1);
     }
     public void FireProjectile()
