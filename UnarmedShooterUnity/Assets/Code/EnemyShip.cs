@@ -7,10 +7,11 @@ public class EnemyShip : Ship
     [HideInInspector] public Transform target;
     public bool doesFollowPlayer = true;
     public bool canFireAtPlayer;
-    public int damage = 1;
+    public int rammerDamage = 1;
 
     void Start()
     {
+        StartCoroutine(FireRateBuffer()); // So enemies can't shoot when spawning
         if (doesFollowPlayer && FindObjectOfType<PlayerShip>() != null)
         {
             target = FindObjectOfType<PlayerShip>().transform;
@@ -21,7 +22,7 @@ public class EnemyShip : Ship
     {
         if (collision.gameObject.GetComponent<PlayerShip>() && !canFireAtPlayer)
         {
-            collision.gameObject.GetComponent<PlayerShip>().TakeDamage(damage);
+            collision.gameObject.GetComponent<PlayerShip>().TakeDamage(rammerDamage);
             Explode();
         }
     }

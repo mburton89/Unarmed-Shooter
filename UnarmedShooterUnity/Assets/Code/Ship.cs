@@ -25,7 +25,7 @@ public class Ship : MonoBehaviour
     private void Awake()
     {
         currentArmor = maxArmor;
-        canShoot = true;
+        canShoot = false;
         thrustParticles = GetComponentInChildren<ParticleSystem>();
     }
 
@@ -54,7 +54,7 @@ public class Ship : MonoBehaviour
         StartCoroutine(FireRateBuffer());
     }
 
-    private IEnumerator FireRateBuffer()
+    public IEnumerator FireRateBuffer()
     {
         canShoot = false;
         yield return new WaitForSeconds(fireRate); 
