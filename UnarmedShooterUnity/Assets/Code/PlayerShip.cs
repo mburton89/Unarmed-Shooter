@@ -99,7 +99,19 @@ public class PlayerShip : Ship
 
             trackVelocity = true;
         }
+
+
+
     }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        print("OnParticleCollision");
+        TakeDamage(1);
+    }
+    
+
+
 
     IEnumerator ApplySpeedBoostOnKill(float timeToApplyBoost)
     {

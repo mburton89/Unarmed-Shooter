@@ -29,7 +29,7 @@ public class Ship : MonoBehaviour
     [HideInInspector] public bool canShoot;
     [HideInInspector] public bool boostUpSent;
 
-    [HideInInspector] ParticleSystem thrustParticles;
+    [SerializeField] ParticleSystem thrustParticles;
     private void Awake()
     {
         currentArmor = maxArmor;
@@ -40,7 +40,7 @@ public class Ship : MonoBehaviour
         boostUpSent = true;
         currentHealth = maxHealth;
 
-        thrustParticles = GetComponentInChildren<ParticleSystem>();
+        if (thrustParticles == null) { thrustParticles = GetComponentInChildren<ParticleSystem>(); }
     }
 
     private void FixedUpdate()

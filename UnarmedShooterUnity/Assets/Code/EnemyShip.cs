@@ -20,7 +20,7 @@ public class EnemyShip : Ship
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerShip>() && !canFireAtPlayer)
+        if (collision.gameObject.GetComponent<PlayerShip>() && !canFireAtPlayer && rammerDamage>0)
         {
             collision.gameObject.GetComponent<PlayerShip>().TakeDamage(rammerDamage);
             Explode();

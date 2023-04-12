@@ -4944,22 +4944,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e501eec1ee95a004da6e163f036df662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 3839687135679874374}
+  rb: {fileID: 3839687135679874374}
   projectilePrefab: {fileID: 0}
-  projectileSpawnPoint: {fileID: 0}
+  projectileSpawnPoint: {fileID: 3839687136694837675}
   acceleration: 1
   maxSpeed: 3
   maxArmor: 3
+  maxHealth: 3
   fireRate: 2
   projectileSpeed: 60
+  maxBoost: 0
+  currentBoostEnergy: 0
+  boostSpeed: 0
   canMove: 1
   currentSpeed: 0
   currentArmor: 0
+  currentHealth: 0
   canShoot: 0
+  boostUpSent: 0
   target: {fileID: 0}
   doesFollowPlayer: 0
   canFireAtPlayer: 0
-  damage: 1
+  rammerDamage: 1
 --- !u!61 &13743158690264508
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4999,6 +5005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointList: {fileID: 0}
+  startWithWaypointID: 0
+  spawnAtWaypoint: 1
   distanceThreshold: 1
 --- !u!1 &3839687136694837674
 GameObject:
