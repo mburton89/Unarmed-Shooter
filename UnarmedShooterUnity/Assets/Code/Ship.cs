@@ -7,8 +7,6 @@ using UnityEngine;
 public class Ship : MonoBehaviour
 {
     public Rigidbody2D rb;
-    //delete this comment
-    public Rigidbody2D rigidbody2D;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
 
@@ -27,7 +25,7 @@ public class Ship : MonoBehaviour
     [HideInInspector] public int currentArmor;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool canShoot;
-    public bool boostUpSent;
+    public bool incrementBoost;
 
     [HideInInspector] ParticleSystem thrustParticles;
     private void Awake()
@@ -35,30 +33,10 @@ public class Ship : MonoBehaviour
         currentArmor = maxArmor;
         rb = GetComponent<Rigidbody2D>();
         currentBoostEnergy = maxBoost;
-        boostUpSent = false;
+        incrementBoost = false;
         currentHealth = maxHealth;
         canShoot = true;
         thrustParticles = GetComponentInChildren<ParticleSystem>();
-    }
-
-    private void FixedUpdate()
-    {
-        if (rb.velocity.magnitude > maxSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
-        //increments up current boost energy if not yet full
-        if (currentBoostEnergy < maxBoost)
-        {
-            currentBoostEnergy++;
-        }
-        //Sends a message when boost gauge is full and makes sure it hasnt already sent the boost ready message
-        if ((currentBoostEnergy >= maxBoost) && (!boostUpSent))
-        {
-            currentBoostEnergy = maxBoost;
-            print("Boost now ready");
-            boostUpSent = true;
-        }
     }
 
     public void Thrust()

@@ -2841,7 +2841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c081c4b67237a408b383a938f43548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 1004388754}
+  rb: {fileID: 1004388754}
   projectilePrefab: {fileID: 7892308106377166166, guid: 0b8c770ae29e345429d194a8011b767b, type: 3}
   projectileSpawnPoint: {fileID: 1142608367}
   acceleration: 4
@@ -2857,7 +2857,7 @@ MonoBehaviour:
   currentArmor: 0
   currentHealth: 0
   canShoot: 0
-  boostUpSent: 0
+  incrementBoost: 0
 --- !u!1 &1005240713
 GameObject:
   m_ObjectHideFlags: 0

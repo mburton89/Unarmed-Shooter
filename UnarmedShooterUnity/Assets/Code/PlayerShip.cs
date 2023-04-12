@@ -22,6 +22,17 @@ public class PlayerShip : Ship
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+
+        //increments up current boost energy if not yet full
+        if (currentBoostEnergy < maxBoost) currentBoostEnergy++;
+
+        //Sends a message when boost gauge is full and makes sure it hasnt already sent the boost ready message
+        if (currentBoostEnergy >= maxBoost && incrementBoost)
+        {
+            currentBoostEnergy = maxBoost;
+            print("Boost now ready");
+            incrementBoost = false;
+        }
     }
 
     void Update()
@@ -128,8 +139,10 @@ public class PlayerShip : Ship
         maxSpeed += boostSpeed;
         acceleration += boostSpeed;
         currentBoostEnergy = 0;
-        boostUpSent = false;
+        incrementBoost = true;
+
         yield return new WaitForSeconds(0.3f);
+
         maxSpeed -= boostSpeed;
         acceleration -= boostSpeed;
         yield break;
