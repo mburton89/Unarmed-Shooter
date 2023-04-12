@@ -26,6 +26,7 @@ public class Ship : MonoBehaviour
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool canShoot;
     public bool incrementBoost;
+    public bool shieldDeployed;
 
     [HideInInspector] ParticleSystem thrustParticles;
     private void Awake()
@@ -34,6 +35,7 @@ public class Ship : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentBoostEnergy = maxBoost;
         incrementBoost = false;
+        shieldDeployed = false;
         currentHealth = maxHealth;
         canShoot = true;
         thrustParticles = GetComponentInChildren<ParticleSystem>();
@@ -64,14 +66,29 @@ public class Ship : MonoBehaviour
     {
         //TODO: play getHitSound
         
-        if(currentArmor>0)
+        if(GetComponent<PlayerShip>())
         {
-            currentArmor = currentArmor - damageToGive;
+            if(shieldDeployed)
+            {
+                currentArmor = currentArmor - damageToGive;
+            }
+            else
+            {
+                currentHealth = currentHealth - damageToGive;
+            }
         }
         else
         {
-            currentHealth = currentHealth - damageToGive;
+            if (currentArmor > 0)
+            {
+                currentArmor = currentArmor - damageToGive;
+            }
+            else
+            {
+                currentHealth = currentHealth - damageToGive;
+            }
         }
+        
 
         //Debug.Log("Armor : " + currentArmor + " -  Health : " + currentHealth);
 

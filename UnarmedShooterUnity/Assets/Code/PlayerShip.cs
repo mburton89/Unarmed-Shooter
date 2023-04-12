@@ -15,6 +15,7 @@ public class PlayerShip : Ship
     {
         isBoostingFromKill = false;
         trackVelocity = true;
+        shieldDeployed = false;
     }
     private void FixedUpdate()
     {
@@ -51,6 +52,21 @@ public class PlayerShip : Ship
         if (Input.GetMouseButton(1))
         {
             Thrust();
+        }
+        if(Input.GetMouseButton(0))
+        {   
+            if(currentArmor > 0)
+            {
+                shieldDeployed = true;
+            }
+            else
+            {
+                shieldDeployed = false;
+            }
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            shieldDeployed = false;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
