@@ -98,9 +98,15 @@ public class Ship : MonoBehaviour
             Explode();
         }
 
+        
+
         if (GetComponent<PlayerShip>())
         {
+
             HUD.Instance.DisplayHealth(currentArmor, currentHealth);
+            GetComponent<PlayerShip>().TakePlayerDamage();
+
+
         }
     }
     public void Explode()
