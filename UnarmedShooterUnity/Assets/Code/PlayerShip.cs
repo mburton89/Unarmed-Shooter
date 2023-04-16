@@ -8,6 +8,8 @@ public class PlayerShip : Ship
     bool isBoostingFromKill;
     bool trackVelocity;
     Vector2 lastVelocity;
+    public int shieldPipCharge;
+    public int maxPipCharge;
 
 
 
@@ -16,6 +18,7 @@ public class PlayerShip : Ship
         isBoostingFromKill = false;
         trackVelocity = true;
         shieldDeployed = false;
+        shieldPipCharge = 0;
     }
     private void FixedUpdate()
     {
@@ -34,6 +37,20 @@ public class PlayerShip : Ship
             print("Boost now ready");
             incrementBoost = false;
         }
+
+        //Checks to see if there is still missing shield and whether or not the shield is not deployed if both is true the ship shield charges
+        if (currentArmor < maxArmor && !shieldDeployed) shieldPipCharge++;
+
+        //When a pip reaches full charge a pip of shield health is regained and the HUD is updated and the pip charge is reset
+        if (shieldPipCharge >= maxPipCharge)
+        {
+            currentArmor++;
+            HUD.Instance.DisplayHealth(currentArmor, currentHealth);
+            shieldPipCharge = 0;
+        }
+
+        //Makes sure the shield doesn't charge while full
+        if (currentArmor >= maxArmor) shieldPipCharge = 0;
     }
 
     void Update()
@@ -57,6 +74,8 @@ public class PlayerShip : Ship
         {   
             if(currentArmor > 0)
             {
+                //Resets the shield charge so that the shield must be down for the full time to get single pip back
+                shieldPipCharge = 0;
                 shieldDeployed = true;
             }
             else
