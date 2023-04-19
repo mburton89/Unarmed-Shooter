@@ -104,6 +104,8 @@ public class Ship : MonoBehaviour
         {
 
             HUD.Instance.DisplayHealth(currentArmor, currentHealth);
+            DoomguyHealthManager.Instance.ShowCorrectHealhPortait(currentArmor, currentHealth);
+            DoomguyHealthManager.Instance.ShowSad();
             GetComponent<PlayerShip>().TakePlayerDamage();
 
 

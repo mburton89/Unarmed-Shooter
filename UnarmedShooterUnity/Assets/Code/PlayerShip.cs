@@ -11,6 +11,7 @@ public class PlayerShip : Ship
     public Sprite boostNotReadySprite;
     public Image masterUI;
 
+    public float shakeAmount = 30f;
 
     bool isUIMoving = false;
 
@@ -95,7 +96,6 @@ public class PlayerShip : Ship
 
     private IEnumerator UIShake()
     {
-        float shakeAmount = 30f;
 
         float shakeTimer =0;
         Vector3 originalPosition = masterUI.rectTransform.localPosition;
