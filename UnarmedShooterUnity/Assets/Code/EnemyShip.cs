@@ -14,11 +14,16 @@ public class EnemyShip : Ship
     void Start()
     {
         turnSpeed += Random.Range(-10f, 10f);
+        
         StartCoroutine(FireRateBuffer()); // So enemies can't shoot when spawning
         if (doesFollowPlayer && FindObjectOfType<PlayerShip>() != null)
         {
             target = FindObjectOfType<PlayerShip>().transform;
         }
+
+        Vector2 directionToFace = new Vector2(
+            target.position.x - transform.position.x, target.position.y - transform.position.y);
+        transform.up = directionToFace;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
