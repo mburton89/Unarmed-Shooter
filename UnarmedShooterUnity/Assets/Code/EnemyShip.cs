@@ -13,6 +13,7 @@ public class EnemyShip : Ship
 
     void Start()
     {
+        turnSpeed += Random.Range(-10f, 10f);
         StartCoroutine(FireRateBuffer()); // So enemies can't shoot when spawning
         if (doesFollowPlayer && FindObjectOfType<PlayerShip>() != null)
         {
