@@ -12,6 +12,8 @@ public class DoomguyHealthManager : MonoBehaviour
 
     [HideInInspector] public DoomHealthPortraitManager activeManager;
 
+    public HulaGirl hulaGirl;
+
     private void Awake()
     {
         Instance = this;
@@ -44,6 +46,7 @@ public class DoomguyHealthManager : MonoBehaviour
     public void ShowSad()
     {
         activeManager.ShowSad();
+        hulaGirl.Animate();
     }
 
 

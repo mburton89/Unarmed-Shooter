@@ -9923,22 +9923,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1768531918}
     m_Modifications:
-    - target: {fileID: 3480574171659521540, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574171659521540, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574171659521540, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574171659521541, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3480574171816074696, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -10026,86 +10010,6 @@ PrefabInstance:
     - target: {fileID: 3480574171816074697, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
       propertyPath: m_Name
       value: Doomguy Health Container
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574171997203394, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574171997203405, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574171997203405, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574171997203405, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172083193446, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172083193446, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172083193446, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172083193447, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172570314738, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172570314749, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172570314749, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172570314749, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172754788906, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172754788917, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172754788917, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172754788917, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172832475056, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172832475059, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172832475059, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480574172832475059, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9deffc7c524dbfc45870335edb6ea643, type: 3}
