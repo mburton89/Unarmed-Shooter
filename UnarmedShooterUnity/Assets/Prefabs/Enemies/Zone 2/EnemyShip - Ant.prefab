@@ -4962,10 +4962,12 @@ MonoBehaviour:
   currentHealth: 0
   canShoot: 0
   boostUpSent: 0
+  thrustParticles: {fileID: 0}
   target: {fileID: 0}
   doesFollowPlayer: 0
   canFireAtPlayer: 0
   rammerDamage: 1
+  turnSpeed: 100
 --- !u!61 &13743158690264508
 BoxCollider2D:
   m_ObjectHideFlags: 0

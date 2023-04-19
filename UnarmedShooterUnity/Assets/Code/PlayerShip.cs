@@ -53,9 +53,28 @@ public class PlayerShip : Ship
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // collision with enemy
-        if (collision.gameObject.GetComponent<EnemyShip>())
+        Collider2D myCollider = collision.GetContact(0).collider;
+        // collision with wall (layer ID is 6)
+        if (myCollider.gameObject.layer == 6)
         {
+            trackVelocity = false;
+
+            // screen shake & knockback when hitting a wall
+            // multiply default screenshake values by speed, which should max out at 10
+            ScreenShakeManager.Instance.transform.DOShakePosition((float)(0.04 * (lastVelocity.magnitude / 2)), (float)(0.3 * (lastVelocity.magnitude / 2)), (int)(9 * (lastVelocity.magnitude / 2)), 1 * (lastVelocity.magnitude / 2), false, true);
+
+            // check for which velocity vector is greater, then apply knockback to only that vector
+            Vector2 directionToBounce = (Vector2)transform.position - collision.contacts[0].point;
+            rb.AddForce((directionToBounce * lastVelocity.magnitude) * 2, ForceMode2D.Impulse);
+
+            trackVelocity = true;
+            return;
+        }
+
+        // collision with enemy
+        if (myCollider.gameObject.GetComponent<EnemyShip>())
+        {
+
             // calculate damage to deal based on velocity vector
             var damageToDeal = (int)Mathf.Round(rb.velocity.x + rb.velocity.y) * 10;
             if (damageToDeal < 0)
@@ -84,21 +103,7 @@ public class PlayerShip : Ship
             collision.gameObject.GetComponent<EnemyShip>().rb.AddForce(rb.velocity * -5, ForceMode2D.Impulse);
         }
 
-        // collision with wall (layer ID is 6)
-        if (collision.gameObject.layer == 6)
-        {
-            trackVelocity = false;
-
-            // screen shake & knockback when hitting a wall
-            // multiply default screenshake values by speed, which should max out at 10
-            ScreenShakeManager.Instance.transform.DOShakePosition((float)(0.04 * (lastVelocity.magnitude / 2)), (float)(0.3 * (lastVelocity.magnitude / 2)), (int)(9 * (lastVelocity.magnitude / 2)), 1 * (lastVelocity.magnitude / 2), false, true);
-
-            // check for which velocity vector is greater, then apply knockback to only that vector
-            Vector2 directionToBounce = (Vector2)transform.position - collision.contacts[0].point;
-            rb.AddForce((directionToBounce * lastVelocity.magnitude) * 2, ForceMode2D.Impulse);
-
-            trackVelocity = true;
-        }
+        
 
 
 

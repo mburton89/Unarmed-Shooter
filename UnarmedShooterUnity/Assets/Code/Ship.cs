@@ -67,7 +67,8 @@ public class Ship : MonoBehaviour
         if (canMove)
         {
             rb.AddForce(transform.up * acceleration);
-            thrustParticles.Emit(1);
+            if (thrustParticles != null) { thrustParticles.Emit(1); }
+            
         }  
 
     }

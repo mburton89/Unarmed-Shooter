@@ -9,6 +9,8 @@ public class EnemyShip : Ship
     public bool canFireAtPlayer;
     public int rammerDamage = 1;
 
+    public float turnSpeed = 200f;
+
     void Start()
     {
         StartCoroutine(FireRateBuffer()); // So enemies can't shoot when spawning
@@ -42,9 +44,14 @@ public class EnemyShip : Ship
     {
         if(target != null && canMove)
         {
+            var rotSpeed = turnSpeed * Time.deltaTime;
             Vector2 directionToFace = new Vector2(
             target.position.x - transform.position.x, target.position.y - transform.position.y);
-            transform.up = directionToFace;
+
+            //transform.up = directionToFace;
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, directionToFace);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotSpeed);
+
             Thrust();
         }
     }

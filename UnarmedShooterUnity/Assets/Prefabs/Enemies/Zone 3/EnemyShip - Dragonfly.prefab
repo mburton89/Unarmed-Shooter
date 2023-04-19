@@ -5008,6 +5008,7 @@ MonoBehaviour:
   doesFollowPlayer: 1
   canFireAtPlayer: 0
   rammerDamage: 0
+  turnSpeed: 150
 --- !u!114 &5763056931203108232
 MonoBehaviour:
   m_ObjectHideFlags: 0

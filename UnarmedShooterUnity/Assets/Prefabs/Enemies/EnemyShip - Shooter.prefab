@@ -5000,10 +5000,12 @@ MonoBehaviour:
   currentHealth: 0
   canShoot: 0
   boostUpSent: 0
+  thrustParticles: {fileID: 0}
   target: {fileID: 0}
   doesFollowPlayer: 1
   canFireAtPlayer: 1
   rammerDamage: 1
+  turnSpeed: 150
 --- !u!1 &3839687136694837674
 GameObject:
   m_ObjectHideFlags: 0
