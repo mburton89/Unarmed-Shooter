@@ -2845,21 +2845,23 @@ MonoBehaviour:
   rb: {fileID: 0}
   projectilePrefab: {fileID: 7892308106377166166, guid: 0b8c770ae29e345429d194a8011b767b, type: 3}
   projectileSpawnPoint: {fileID: 1142608367}
+  lastVelocity: {x: 0, y: 0}
   acceleration: 4
   maxSpeed: 10
   maxArmor: 21
   maxHealth: 21
   fireRate: 1
   projectileSpeed: 100
-  maxBoost: 250
+  maxBoost: 0
   currentBoostEnergy: 0
-  boostSpeed: 30
+  boostSpeed: 0
   currentSpeed: 0
   currentArmor: 0
   currentHealth: 0
   canShoot: 0
   incrementBoost: 0
   shieldDeployed: 0
+  trackVelocity: 0
   shieldPipCharge: 0
   maxPipCharge: 150
 --- !u!1 &1005240713
@@ -9159,50 +9161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924910e8b716ec54ea1b72e3718c59e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniHealthBars:
-  - {fileID: 1005240715}
-  - {fileID: 2047171091}
-  - {fileID: 81383237}
-  - {fileID: 1526918951}
-  - {fileID: 150547172}
-  - {fileID: 815388528}
-  - {fileID: 339310523}
-  - {fileID: 961371302}
-  - {fileID: 382059454}
-  - {fileID: 942900968}
-  - {fileID: 305659331}
-  - {fileID: 150272620}
-  - {fileID: 2131372616}
-  - {fileID: 353888056}
-  - {fileID: 245534572}
-  - {fileID: 1006214669}
-  - {fileID: 1236564092}
-  - {fileID: 449855441}
-  - {fileID: 1596803176}
-  - {fileID: 159348745}
-  - {fileID: 724505374}
-  miniShieldBars:
-  - {fileID: 2073899771}
-  - {fileID: 191807777}
-  - {fileID: 105148845}
-  - {fileID: 1725300084}
-  - {fileID: 361538044}
-  - {fileID: 1264111597}
-  - {fileID: 402584036}
-  - {fileID: 390896847}
-  - {fileID: 1277314313}
-  - {fileID: 575653554}
-  - {fileID: 1889408397}
-  - {fileID: 441986493}
-  - {fileID: 1746977900}
-  - {fileID: 1903455992}
-  - {fileID: 1427629950}
-  - {fileID: 255833789}
-  - {fileID: 549925213}
-  - {fileID: 559981806}
-  - {fileID: 1273115140}
-  - {fileID: 1047671982}
-  - {fileID: 1528518574}
+  miniHealthBars: []
+  miniShieldBars: []
   waveText: {fileID: 1451653352}
 --- !u!1 &1774527700
 GameObject:

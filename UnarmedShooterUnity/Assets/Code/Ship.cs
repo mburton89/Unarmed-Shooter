@@ -9,6 +9,7 @@ public class Ship : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
+    public Vector2 lastVelocity;
 
     public float acceleration;
     public float maxSpeed;
@@ -22,11 +23,12 @@ public class Ship : MonoBehaviour
     public int boostSpeed;
 
     [HideInInspector] public float currentSpeed;
-    [HideInInspector] public int currentArmor;
-    [HideInInspector] public int currentHealth;
+    public int currentArmor;
+    public int currentHealth;
     [HideInInspector] public bool canShoot;
     public bool incrementBoost;
     public bool shieldDeployed;
+    public bool trackVelocity;
 
     [HideInInspector] ParticleSystem thrustParticles;
     private void Awake()
@@ -66,42 +68,24 @@ public class Ship : MonoBehaviour
     {
         //TODO: play getHitSound
         
-        if(GetComponent<PlayerShip>())
+        if (gameObject.GetComponent<PlayerShip>())
         {
-            if(shieldDeployed)
-            {
-                currentArmor = currentArmor - damageToGive;
-            }
-            else
-            {
-                currentHealth = currentHealth - damageToGive;
-            }
+            // if player has shield up, deduct armor
+            if (shieldDeployed && currentArmor > 0) currentArmor -= damageToGive;
+            else currentHealth -= damageToGive;
         }
-        else
-        {
-            if (currentArmor > 0)
-            {
-                currentArmor = currentArmor - damageToGive;
-            }
-            else
-            {
-                currentHealth = currentHealth - damageToGive;
-            }
-        }
-        
 
+        if (currentArmor > 0) currentArmor -= damageToGive;
+        else currentHealth -= damageToGive;
+
+        print("Target's armor: " + currentArmor + " | Target's health: " + currentHealth);
         //Debug.Log("Armor : " + currentArmor + " -  Health : " + currentHealth);
 
+        if (currentHealth <= 0) Explode();
 
-        if (currentHealth <= 0)
-        {
-            Explode();
-        }
-
-        if (GetComponent<PlayerShip>())
-        {
-            HUD.Instance.DisplayHealth(currentArmor, currentHealth);
-        }
+        // update HUD with new health & armor values
+        HUD.Instance.DisplayHealth(currentArmor, currentHealth);
+        print("HUD is updating! Target's armor: " + currentArmor + " | Target's health: " + currentHealth);
     }
     public void Explode()
     {

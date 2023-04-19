@@ -6,12 +6,8 @@ using DG.Tweening;
 public class PlayerShip : Ship
 {
     bool isBoostingFromKill;
-    bool trackVelocity;
-    Vector2 lastVelocity;
     public int shieldPipCharge;
     public int maxPipCharge;
-
-
 
     private void Start()
     {
@@ -22,15 +18,12 @@ public class PlayerShip : Ship
     }
     private void FixedUpdate()
     {
-        if (rb.velocity.magnitude > maxSpeed && !isBoostingFromKill)
-        {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
-        }
+        if (rb.velocity.magnitude > maxSpeed && !isBoostingFromKill) rb.velocity = rb.velocity.normalized * maxSpeed;
 
-        //increments up current boost energy if not yet full
+        // increments up current boost energy if not yet full
         if (currentBoostEnergy < maxBoost) currentBoostEnergy++;
 
-        //Sends a message when boost gauge is full and makes sure it hasnt already sent the boost ready message
+        // Sends a message when boost gauge is full and makes sure it hasnt already sent the boost ready message
         if (currentBoostEnergy >= maxBoost && incrementBoost)
         {
             currentBoostEnergy = maxBoost;
@@ -38,10 +31,10 @@ public class PlayerShip : Ship
             incrementBoost = false;
         }
 
-        //Checks to see if there is still missing shield and whether or not the shield is not deployed if both is true the ship shield charges
+        // Checks to see if there is still missing shield and whether or not the shield is not deployed. If both are true, the ship shield charges
         if (currentArmor < maxArmor && !shieldDeployed) shieldPipCharge++;
 
-        //When a pip reaches full charge a pip of shield health is regained and the HUD is updated and the pip charge is reset
+        // When a pip reaches full charge, a pip of shield health is regained, the HUD is updated, and the pip charge is reset
         if (shieldPipCharge >= maxPipCharge)
         {
             currentArmor++;
@@ -49,7 +42,7 @@ public class PlayerShip : Ship
             shieldPipCharge = 0;
         }
 
-        //Makes sure the shield doesn't charge while full
+        // Makes sure the shield doesn't charge while full
         if (currentArmor >= maxArmor) shieldPipCharge = 0;
     }
 
@@ -58,55 +51,37 @@ public class PlayerShip : Ship
         FollowMouse();
         HandleInput();
 
-        if (trackVelocity)
-        {
-            lastVelocity = rb.velocity;
-        }
+        if (trackVelocity) lastVelocity = rb.velocity;
     }
 
     void HandleInput()
     {
-        if (Input.GetMouseButton(1))
-        {
-            Thrust();
-        }
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {   
-            if(currentArmor > 0)
+            if (currentArmor > 0)
             {
-                //Resets the shield charge so that the shield must be down for the full time to get single pip back
+                // Resets the shield charge so that the shield must be down for the full time to get single pip back
                 shieldPipCharge = 0;
                 shieldDeployed = true;
             }
-            else
-            {
-                shieldDeployed = false;
-            }
+            else shieldDeployed = false;
         }
-        if(Input.GetMouseButtonUp(0))
-        {
-            shieldDeployed = false;
-        }
+
+        if (Input.GetMouseButtonUp(0)) shieldDeployed = false;
+
+        if (Input.GetMouseButton(1)) Thrust();
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //checks to see if boost is available
-            if (currentBoostEnergy == maxBoost)
-            {
-                StartCoroutine(Boost());
-            }
-            else
-            {
-                //replace with some sort of UI interaction/sound alert
-                print("Boost not ready");
-            }
+            // checks to see if boost is available
+            if (currentBoostEnergy == maxBoost)StartCoroutine(Boost());
+            else print("Boost not ready"); // replace with some sort of UI interaction/sound alert
         }
     }
     void FollowMouse()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(
-            new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
-        Vector2 directionToFace = new Vector2(
-            mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+        Vector2 directionToFace = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         transform.up = directionToFace;
     }
 
@@ -116,7 +91,7 @@ public class PlayerShip : Ship
         if (collision.gameObject.GetComponent<EnemyShip>())
         {
             // calculate damage to deal based on velocity vector
-            var damageToDeal = (int)Mathf.Round(rb.velocity.x + rb.velocity.y) * 10;
+            var damageToDeal = (int)Mathf.Round(rb.velocity.x + rb.velocity.y);
             if (damageToDeal < 0)
             {
                 // make the damage value positive if it's not (flying downward)
@@ -125,12 +100,18 @@ public class PlayerShip : Ship
             collision.gameObject.GetComponent<EnemyShip>().TakeDamage(damageToDeal);
             print("Damage dealt by player: " + damageToDeal);
 
-
             // take & apply knockback when hitting stuff, unless last hit kills the enemy
-            if (collision.gameObject.GetComponent<EnemyShip>().currentArmor > 0)
-            {
-                rb.AddForce(rb.velocity * -5, ForceMode2D.Impulse);
-            }
+            // apply knockback based on (1) angle of collision with target (2) velocity right before collision
+            trackVelocity = false;
+
+            // screen shake & knockback when hitting a wall
+            // multiply default screenshake values by speed, which should max out at 10
+            ScreenShakeManager.Instance.transform.DOShakePosition((float)(0.04 * (lastVelocity.magnitude / 2)), (float)(0.3 * (lastVelocity.magnitude / 2)), (int)(9 * (lastVelocity.magnitude / 2)), 1 * (lastVelocity.magnitude / 2), false, true);
+
+            Vector2 directionToBounce = (Vector2)transform.position - collision.contacts[0].point;
+            rb.AddForce((directionToBounce * lastVelocity.magnitude) * 2, ForceMode2D.Impulse);
+
+            trackVelocity = true;
 
             // apply speed boost on kill
             if (collision.gameObject.GetComponent<EnemyShip>().currentArmor <= 0)
@@ -140,7 +121,7 @@ public class PlayerShip : Ship
                 StartCoroutine(ApplySpeedBoostOnKill(timeToApplyBoost));
             }
 
-            collision.gameObject.GetComponent<EnemyShip>().rb.AddForce(rb.velocity * -5, ForceMode2D.Impulse);
+            //collision.gameObject.GetComponent<EnemyShip>().rb.AddForce(rb.velocity * -5, ForceMode2D.Impulse);
         }
 
         // collision with wall (layer ID is 6)
@@ -152,7 +133,6 @@ public class PlayerShip : Ship
             // multiply default screenshake values by speed, which should max out at 10
             ScreenShakeManager.Instance.transform.DOShakePosition((float)(0.04 * (lastVelocity.magnitude / 2)), (float)(0.3 * (lastVelocity.magnitude / 2)), (int)(9 * (lastVelocity.magnitude / 2)), 1 * (lastVelocity.magnitude / 2), false, true);
 
-            // check for which velocity vector is greater, then apply knockback to only that vector
             Vector2 directionToBounce = (Vector2)transform.position - collision.contacts[0].point;
             rb.AddForce((directionToBounce * lastVelocity.magnitude) * 2, ForceMode2D.Impulse);
 
@@ -166,7 +146,7 @@ public class PlayerShip : Ship
         Debug.Log("Got a kill, applying speed boost! New velocity: " + rb.velocity);
         yield return new WaitForSeconds(0.75f);
         isBoostingFromKill = false;
-        Debug.Log("Boost has ended.");
+        Debug.Log("Boost has ended."); 
     }
 
     private IEnumerator Boost()

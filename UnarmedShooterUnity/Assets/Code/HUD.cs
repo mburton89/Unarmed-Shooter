@@ -9,9 +9,6 @@ public class HUD : MonoBehaviour
     public static HUD Instance;
     public List<Image> miniHealthBars;
     public List<Image> miniShieldBars;
-
-
-    
     public TextMeshProUGUI waveText;
 
     private void Awake()
@@ -21,7 +18,7 @@ public class HUD : MonoBehaviour
 
     public void DisplayHealth(int currentArmor, int currentHealth)
     {
-        for(int i = 0; i < miniHealthBars.Count; i++)
+        for (int i = 0; i < miniHealthBars.Count; i++)
         {
             bool isEnabled = i < currentHealth;
 
