@@ -9,6 +9,7 @@ public class Ship : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
+    public Vector2 lastVelocity;
 
     public float acceleration;
     public float maxSpeed;
@@ -27,6 +28,7 @@ public class Ship : MonoBehaviour
     [HideInInspector] public bool canShoot;
     public bool incrementBoost;
     public bool shieldDeployed;
+    public bool trackVelocity;
 
     [HideInInspector] ParticleSystem thrustParticles;
     private void Awake()
@@ -66,42 +68,22 @@ public class Ship : MonoBehaviour
     {
         //TODO: play getHitSound
         
-        if(GetComponent<PlayerShip>())
+        if (GetComponent<PlayerShip>())
         {
-            if(shieldDeployed)
-            {
-                currentArmor = currentArmor - damageToGive;
-            }
-            else
-            {
-                currentHealth = currentHealth - damageToGive;
-            }
+            if (shieldDeployed) currentArmor = currentArmor - damageToGive;
+            else currentHealth = currentHealth - damageToGive;
         }
         else
         {
-            if (currentArmor > 0)
-            {
-                currentArmor = currentArmor - damageToGive;
-            }
-            else
-            {
-                currentHealth = currentHealth - damageToGive;
-            }
-        }
-        
-
-        //Debug.Log("Armor : " + currentArmor + " -  Health : " + currentHealth);
-
-
-        if (currentHealth <= 0)
-        {
-            Explode();
+            if (currentArmor > 0) currentArmor = currentArmor - damageToGive;
+            else currentHealth = currentHealth - damageToGive;
         }
 
-        if (GetComponent<PlayerShip>())
-        {
-            HUD.Instance.DisplayHealth(currentArmor, currentHealth);
-        }
+        print("Armor: " + currentArmor + " |  Health: " + currentHealth);
+
+        if (currentHealth <= 0) Explode();
+
+        if (GetComponent<PlayerShip>()) HUD.Instance.DisplayHealth(currentArmor, currentHealth);
     }
     public void Explode()
     {
