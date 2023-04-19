@@ -7,9 +7,11 @@ public class EnemyShip : Ship
     Transform target;
     public bool canFireAtPlayer;
 
+
     void Start()
     {
         target = FindObjectOfType<PlayerShip>().transform;
+        powerUpsPrefabs = Resources.LoadAll<GameObject>("PowerUps");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

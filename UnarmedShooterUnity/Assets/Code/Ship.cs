@@ -27,6 +27,8 @@ public class Ship : MonoBehaviour
     [HideInInspector] public bool canShoot;
     public bool incrementBoost;
     public bool shieldDeployed;
+    public static GameObject[] powerUpsPrefabs;
+    public float dropChance;
 
     [HideInInspector] ParticleSystem thrustParticles;
     private void Awake()
@@ -39,6 +41,7 @@ public class Ship : MonoBehaviour
         currentHealth = maxHealth;
         canShoot = true;
         thrustParticles = GetComponentInChildren<ParticleSystem>();
+        powerUpsPrefabs = Resources.LoadAll<GameObject>("PowerUps");
     }
 
     public void Thrust()
@@ -107,6 +110,16 @@ public class Ship : MonoBehaviour
     {
         ScreenShakeManager.Instance.ShakeScreen();
         Instantiate(Resources.Load("Explosion"), transform.position, transform.rotation);
+
+        if(GetComponent<EnemyShip>())
+        {
+            if (Random.Range(0f, 1f) <= dropChance)
+            {
+                int rand = Random.Range(0, powerUpsPrefabs.Length);
+                Instantiate(powerUpsPrefabs[rand],transform.position, transform.rotation);
+            }
+        }
+
         Destroy(gameObject);
 
         FindObjectOfType<EnemyShipSpawner>().CountEnemyShips();
