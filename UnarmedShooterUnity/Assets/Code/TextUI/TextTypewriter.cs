@@ -134,7 +134,7 @@ public class TextTypewriter : MonoBehaviour
         {
             textbox.maxVisibleCharacters = visibleCharacters;
             visibleCharacters+=charactersPerFrame;
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         
         yield return null;
