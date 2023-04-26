@@ -4982,7 +4982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e501eec1ee95a004da6e163f036df662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 3472790249586634177}
+  rb: {fileID: 0}
   projectilePrefab: {fileID: 7892308106377166166, guid: 0b8c770ae29e345429d194a8011b767b, type: 3}
   projectileSpawnPoint: {fileID: 3472790250054849957}
   acceleration: 1
@@ -4991,10 +4991,15 @@ MonoBehaviour:
   maxHealth: 3
   fireRate: 0
   projectileSpeed: 0
+  maxBoost: 0
+  currentBoostEnergy: 0
+  boostSpeed: 0
   currentSpeed: 0
   currentArmor: 0
   currentHealth: 0
   canShoot: 0
+  incrementBoost: 0
+  shieldDeployed: 0
   canFireAtPlayer: 0
 --- !u!1 &3472790250054849962
 GameObject:

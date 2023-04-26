@@ -20,9 +20,9 @@ public class DoomguyHealthManager : MonoBehaviour
         activeManager = portrait100;
     }
 
-    public void ShowCorrectHealhPortait(int currentArmor, int currentHealth)
+    public void ShowCorrectHealhPortait(int currentHealth, int maxHealth)
     {
-        float damagePercentage = (float)currentArmor / (float)currentHealth;
+        float damagePercentage = (float)currentHealth / (float)maxHealth;
 
         if (damagePercentage > 0.5f)
         {

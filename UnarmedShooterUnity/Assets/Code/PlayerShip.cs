@@ -71,6 +71,10 @@ public class PlayerShip : Ship
         {
             lastVelocity = rb.velocity;
         }
+
+        float speed = rb.velocity.magnitude * 100f;
+        string speedString = speed.ToString("F");
+        SpeedGauge.Instance.speedtext.SetText(speedString + " MPH");
     }
 
     void HandleInput()
@@ -210,6 +214,8 @@ public class PlayerShip : Ship
             StartCoroutine(UIonDamage());
             StartCoroutine(UIShake());
         }
+
+        DoomguyHealthManager.Instance.ShowCorrectHealhPortait(currentHealth, maxHealth);
     }
 
 
