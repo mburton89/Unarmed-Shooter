@@ -22,6 +22,7 @@ public class EnergyPowerUp : MonoBehaviour
         if(collision.GetComponent<PlayerShip>() && collision.GetComponent<PlayerShip>().currentBoostEnergy != collision.GetComponent<PlayerShip>().maxBoost)
         {
             collision.GetComponent<PlayerShip>().currentBoostEnergy = collision.GetComponent<PlayerShip>().maxBoost;
+            DoomguyHealthManager.Instance.ShowHappy();
             Destroy(gameObject);
         }
     }

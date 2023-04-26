@@ -87,7 +87,13 @@ public class Ship : MonoBehaviour
 
         if (currentHealth <= 0) Explode();
 
-        if (GetComponent<PlayerShip>()) HUD.Instance.DisplayHealth(currentArmor, currentHealth);
+        if (GetComponent<PlayerShip>())
+        {
+            HUD.Instance.DisplayHealth(currentArmor, currentHealth);
+            DoomguyHealthManager.Instance.ShowCorrectHealhPortait(currentArmor, currentHealth);
+            DoomguyHealthManager.Instance.ShowSad();
+            GetComponent<PlayerShip>().TakePlayerDamage();
+        }
     }
     public void Explode()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class PlayerShip : Ship
@@ -9,6 +10,14 @@ public class PlayerShip : Ship
     public int shieldPipCharge;
     public int maxPipCharge;
 
+    public Image boostImage;
+    public Sprite boostReadySprite;
+    public Sprite boostNotReadySprite;
+    public Image masterUI;
+
+    public float shakeAmount = 30f;
+
+    bool isUIMoving = false;
     private void Start()
     {
         isBoostingFromKill = false;
@@ -16,6 +25,7 @@ public class PlayerShip : Ship
         shieldDeployed = false;
         shieldPipCharge = 0;
     }
+	
     private void FixedUpdate()
     {
         if (rb.velocity.magnitude > maxSpeed && !isBoostingFromKill) rb.velocity = rb.velocity.normalized * maxSpeed;
@@ -51,12 +61,24 @@ public class PlayerShip : Ship
         FollowMouse();
         HandleInput();
 
-        if (trackVelocity) lastVelocity = rb.velocity;
+        if (trackVelocity)
+        {
+            lastVelocity = rb.velocity;
+        }
+
+        float speed = rb.velocity.magnitude * 100f;
+        string speedString = speed.ToString("F");
+        SpeedGauge.Instance.speedtext.SetText(speedString + " MPH");
     }
 
     void HandleInput()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
+        {
+            Thrust();
+        }
+
+        if(Input.GetMouseButton(0))
         {   
             if (currentArmor > 0)
             {
@@ -69,14 +91,20 @@ public class PlayerShip : Ship
 
         if (Input.GetMouseButtonUp(0)) shieldDeployed = false;
 
-        if (Input.GetMouseButton(1)) Thrust();
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // checks to see if boost is available
-            if (currentBoostEnergy == maxBoost) StartCoroutine(Boost());
-            else print("Boost not ready"); //replace with some sort of UI interaction/sound alert
-        }
+			if (currentBoostEnergy >= maxBoost)
+			{
+				boostImage.sprite = boostReadySprite;
+			}
+			else
+			{
+				boostImage.sprite = boostNotReadySprite;
+				//replace with some sort of UI interaction/sound alert
+				print("Boost not ready");
+			}
+		}
+        
     }
     void FollowMouse()
     {
@@ -163,4 +191,60 @@ public class PlayerShip : Ship
         acceleration -= boostSpeed;
         yield break;
     }
+
+    public void TakePlayerDamage()
+    {
+        if (!isUIMoving)
+        {
+            isUIMoving = true;
+            StartCoroutine(UIonDamage());
+            StartCoroutine(UIShake());
+        }
+
+        DoomguyHealthManager.Instance.ShowCorrectHealhPortait(currentHealth, maxHealth);
+    }
+
+
+    private IEnumerator UIonDamage()
+    {
+
+        masterUI.color = Color.red;
+        yield return new WaitForSeconds(.25f);
+        masterUI.color = Color.white;
+
+    }
+
+    private IEnumerator UIShake()
+    {
+
+        float shakeTimer =0;
+        Vector3 originalPosition = masterUI.rectTransform.localPosition;
+
+
+        while(shakeTimer<.25f)
+        {
+            float randomX=Random.Range(originalPosition.x - shakeAmount, originalPosition.x);
+
+            float randomY = Random.Range(originalPosition.y, originalPosition.y + shakeAmount);
+
+
+
+            //set the position of masterUI to random position
+            Vector3 randomPosition=new Vector3(randomX,randomY);
+
+            masterUI.rectTransform.localPosition = randomPosition;
+
+
+            shakeTimer = shakeTimer + Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+
+
+        }
+
+        masterUI.rectTransform.localPosition = originalPosition;
+        //set the position of th emasterUI to the original position
+        isUIMoving = false;
+    }
+
+
 }
