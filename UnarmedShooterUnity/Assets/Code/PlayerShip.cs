@@ -124,7 +124,7 @@ public class PlayerShip : Ship
             //collision.gameObject.GetComponent<EnemyShip>().rb.AddForce(rb.velocity * -5, ForceMode2D.Impulse);
         }
 
-        // collision with wall (layer ID is 6)
+        // collision with wall (layer ID is 6 - make it if it doesn't exist)
         if (collision.gameObject.layer == 6)
         {
             trackVelocity = false;

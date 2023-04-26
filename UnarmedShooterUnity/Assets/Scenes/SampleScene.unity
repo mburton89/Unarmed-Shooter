@@ -2963,6 +2963,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   projectilePrefab: {fileID: 7892308106377166166, guid: 0b8c770ae29e345429d194a8011b767b, type: 3}
   projectileSpawnPoint: {fileID: 1142608367}
+  lastVelocity: {x: 0, y: 0}
   acceleration: 4
   maxSpeed: 10
   maxArmor: 21
@@ -2978,6 +2979,7 @@ MonoBehaviour:
   canShoot: 0
   incrementBoost: 0
   shieldDeployed: 0
+  trackVelocity: 0
   shieldPipCharge: 0
   maxPipCharge: 150
 --- !u!1 &1005240713
