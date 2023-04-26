@@ -5002,6 +5002,7 @@ MonoBehaviour:
   incrementBoost: 0
   shieldDeployed: 0
   trackVelocity: 0
+  dropChance: 0.38
   canFireAtPlayer: 0
 --- !u!1 &3472790250054849962
 GameObject:
