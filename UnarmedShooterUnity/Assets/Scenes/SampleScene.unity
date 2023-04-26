@@ -840,7 +840,7 @@ MonoBehaviour:
   projectileSpawnPoint: {fileID: 1142608367}
   lastVelocity: {x: 0, y: 0}
   acceleration: 8
-  maxSpeed: 100
+  maxSpeed: 10
   maxArmor: 21
   maxHealth: 21
   fireRate: 1
