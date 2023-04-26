@@ -36,6 +36,7 @@ public class PlayerShip : Ship
         // Sends a message when boost gauge is full and makes sure it hasnt already sent the boost ready message
         if (currentBoostEnergy >= maxBoost && incrementBoost)
         {
+            boostImage.sprite = boostReadySprite;
             currentBoostEnergy = maxBoost;
             print("Boost now ready");
             incrementBoost = false;
@@ -95,13 +96,8 @@ public class PlayerShip : Ship
         {
 			if (currentBoostEnergy >= maxBoost)
 			{
-				boostImage.sprite = boostReadySprite;
-			}
-			else
-			{
-				boostImage.sprite = boostNotReadySprite;
-				//replace with some sort of UI interaction/sound alert
-				print("Boost not ready");
+                boostImage.sprite = boostNotReadySprite;
+                StartCoroutine(Boost());
 			}
 		}
         
