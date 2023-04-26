@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Rigidbody2D))]
 public class Ship : MonoBehaviour
 {
-    public Rigidbody2D rigidbody2D;
+    public Rigidbody2D rb;
     public GameObject projectilePrefab;
     public Transform projectileSpawnPoint;
 
@@ -16,49 +18,32 @@ public class Ship : MonoBehaviour
     public float fireRate;
     public float projectileSpeed;
     public int maxBoost;
-    [HideInInspector] public int currentBoostEnergy;
+    public int currentBoostEnergy;
     public int boostSpeed;
 
     [HideInInspector] public float currentSpeed;
     [HideInInspector] public int currentArmor;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool canShoot;
-    [HideInInspector] public bool boostUpSent;
+    public bool incrementBoost;
+    public bool shieldDeployed;
 
     [HideInInspector] ParticleSystem thrustParticles;
     private void Awake()
     {
         currentArmor = maxArmor;
-
+        rb = GetComponent<Rigidbody2D>();
         currentBoostEnergy = maxBoost;
-        boostUpSent = true;
+        incrementBoost = false;
+        shieldDeployed = false;
         currentHealth = maxHealth;
         canShoot = true;
         thrustParticles = GetComponentInChildren<ParticleSystem>();
     }
 
-    private void FixedUpdate()
-    {
-        if (rigidbody2D.velocity.magnitude > maxSpeed)
-        {
-            rigidbody2D.velocity = rigidbody2D.velocity.normalized * maxSpeed;
-        }
-        //increments up current boost energy if not yet full
-        if (currentBoostEnergy < maxBoost)
-        {
-            currentBoostEnergy++;
-        }
-        //Sends a message when boost gauge is full and makes sure it hasnt already sent the boost ready message
-        if ((currentBoostEnergy == maxBoost) && (!boostUpSent))
-        {
-            print("Boost now ready");
-            boostUpSent = true;
-        }
-    }
-
     public void Thrust()
     {
-        rigidbody2D.AddForce(transform.up * acceleration);
+        rb.AddForce(transform.up * acceleration);
         thrustParticles.Emit(1);
     }
     public void FireProjectile()
@@ -81,16 +66,31 @@ public class Ship : MonoBehaviour
     {
         //TODO: play getHitSound
         
-        if(currentArmor>0)
+        if(GetComponent<PlayerShip>())
         {
-            currentArmor = currentArmor - damageToGive;
+            if(shieldDeployed)
+            {
+                currentArmor = currentArmor - damageToGive;
+            }
+            else
+            {
+                currentHealth = currentHealth - damageToGive;
+            }
         }
         else
         {
-            currentHealth = currentHealth - damageToGive;
+            if (currentArmor > 0)
+            {
+                currentArmor = currentArmor - damageToGive;
+            }
+            else
+            {
+                currentHealth = currentHealth - damageToGive;
+            }
         }
+        
 
-        Debug.Log("Armor : " + currentArmor + " -  Health : " + currentHealth);
+        //Debug.Log("Armor : " + currentArmor + " -  Health : " + currentHealth);
 
 
         if (currentHealth <= 0)
