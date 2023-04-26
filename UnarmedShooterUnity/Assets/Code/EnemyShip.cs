@@ -21,9 +21,12 @@ public class EnemyShip : Ship
             target = FindObjectOfType<PlayerShip>().transform;
         }
 
-        Vector2 directionToFace = new Vector2(
+        if(target != null)
+        {
+            Vector2 directionToFace = new Vector2(
             target.position.x - transform.position.x, target.position.y - transform.position.y);
-        transform.up = directionToFace;
+            transform.up = directionToFace;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

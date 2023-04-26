@@ -40,7 +40,9 @@ public class Ship : MonoBehaviour
         boostUpSent = true;
         currentHealth = maxHealth;
 
-        if (thrustParticles == null) { thrustParticles = GetComponentInChildren<ParticleSystem>(); }
+        if (thrustParticles == null && GetComponent<Dragonfly>() == null) {
+            thrustParticles = GetComponentInChildren<ParticleSystem>();
+        }
     }
 
     private void FixedUpdate()
