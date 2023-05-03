@@ -34,8 +34,6 @@ public class EnemyShipSpawner : MonoBehaviour
     {
         int numberOfEnemyShips = FindObjectsOfType<EnemyShip>().Length;
 
-        print(numberOfEnemyShips);
-
         if (numberOfEnemyShips == 1)
         {
             currentWave++;
