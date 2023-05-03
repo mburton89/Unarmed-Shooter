@@ -21,10 +21,6 @@ public class CentipedeID : MonoBehaviour
             {
                 GetComponentInParent<centipedeTail>().RemoveTail(ID);
             }
-            else
-            {
-                FindObjectOfType<EnemyShipSpawner>().CountEnemyShips();
-            }
         }
         
     }

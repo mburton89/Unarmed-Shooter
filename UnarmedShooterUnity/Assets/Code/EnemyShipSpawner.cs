@@ -36,6 +36,8 @@ public class EnemyShipSpawner : MonoBehaviour
     {
         int numberOfEnemyShips = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
+        print(numberOfEnemyShips);
+
         if (numberOfEnemyShips == 1)
         {
             currentWave++;

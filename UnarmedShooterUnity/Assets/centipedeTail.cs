@@ -71,6 +71,5 @@ public class centipedeTail : MonoBehaviour
 
             Destroy(temp);
         }
-        FindObjectOfType<EnemyShipSpawner>().CountEnemyShips();
     }
 }

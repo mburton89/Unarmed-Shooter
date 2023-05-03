@@ -11,15 +11,14 @@ public class EnemyShip : Ship
 
     public float turnSpeed = 200f;
 
+    [HideInInspector] public bool playerNear = false;
+
     void Start()
     {
         turnSpeed += Random.Range(-10f, 10f);
         
         StartCoroutine(FireRateBuffer()); // So enemies can't shoot when spawning
-        if (doesFollowPlayer && FindObjectOfType<PlayerShip>() != null)
-        {
-            target = FindObjectOfType<PlayerShip>().transform;
-        }
+        
 
         if(target != null)
         {
@@ -49,6 +48,14 @@ public class EnemyShip : Ship
         }
     }
 
+    public void PlayerInRange()
+    {
+        if (doesFollowPlayer && FindObjectOfType<PlayerShip>() != null)
+        {
+            target = FindObjectOfType<PlayerShip>().transform;
+        }
+    }
+
     void FlyTowardPlayer()
     {
         if(target != null && canMove)
@@ -61,7 +68,10 @@ public class EnemyShip : Ship
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, directionToFace);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotSpeed);
 
-            Thrust();
+            if (!doesFollowPlayer || (doesFollowPlayer && playerNear))
+            {
+                Thrust();
+            }
         }
     }
 }

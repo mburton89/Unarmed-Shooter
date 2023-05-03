@@ -146,6 +146,7 @@ MonoBehaviour:
   canFireAtPlayer: 0
   rammerDamage: 1
   turnSpeed: 100
+  playerNear: 0
 --- !u!114 &4340228853559386720
 MonoBehaviour:
   m_ObjectHideFlags: 0

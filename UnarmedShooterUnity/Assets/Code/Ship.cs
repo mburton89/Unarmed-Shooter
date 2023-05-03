@@ -143,6 +143,9 @@ public class Ship : MonoBehaviour
             }
         }
 
-        FindObjectOfType<EnemyShipSpawner>().CountEnemyShips();
+        if (gameObject.tag == "Enemy")
+        {
+            FindObjectOfType<EnemyShipSpawner>().CountEnemyShips();
+        }
     }
 }
