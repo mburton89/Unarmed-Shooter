@@ -20,6 +20,7 @@ public class PlayerShip : Ship
     bool isUIMoving = false;
     private void Start()
     {
+        canMove = true;
         isBoostingFromKill = false;
         trackVelocity = true;
         shieldDeployed = false;
