@@ -13,7 +13,8 @@ public class EnemyShipSpawner : MonoBehaviour
 
     private void Awake()
     {
-        startingNumberOfShips = FindObjectsOfType<EnemyShip>().Length;
+        //startingNumberOfShips = FindObjectsOfType<EnemyShip>().Length;
+        startingNumberOfShips = GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 
     public void SpawnEnemyShips()
@@ -30,9 +31,10 @@ public class EnemyShipSpawner : MonoBehaviour
         }
     }
 
+    //Change it to be "YOU WIN" or something
     public void CountEnemyShips()
     {
-        int numberOfEnemyShips = FindObjectsOfType<EnemyShip>().Length;
+        int numberOfEnemyShips = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
         if (numberOfEnemyShips == 1)
         {

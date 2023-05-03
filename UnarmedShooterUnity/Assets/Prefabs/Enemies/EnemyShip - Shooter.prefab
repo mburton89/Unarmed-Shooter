@@ -4836,7 +4836,7 @@ GameObject:
   - component: {fileID: 3839687135679874372}
   m_Layer: 0
   m_Name: EnemyShip - Shooter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4985,7 +4985,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   projectilePrefab: {fileID: 7892308106377166166, guid: 0b8c770ae29e345429d194a8011b767b, type: 3}
   projectileSpawnPoint: {fileID: 3839687136694837675}
-  lastVelocity: {x: 0, y: 0}
   acceleration: 1
   maxSpeed: 3
   maxArmor: 8
@@ -4995,15 +4994,18 @@ MonoBehaviour:
   maxBoost: 0
   currentBoostEnergy: 0
   boostSpeed: 0
+  canMove: 0
   currentSpeed: 0
   currentArmor: 0
   currentHealth: 0
   canShoot: 0
-  incrementBoost: 0
-  shieldDeployed: 0
-  trackVelocity: 0
-  dropChance: 0.38
+  boostUpSent: 0
+  thrustParticles: {fileID: 0}
+  target: {fileID: 0}
+  doesFollowPlayer: 1
   canFireAtPlayer: 1
+  rammerDamage: 1
+  turnSpeed: 200
 --- !u!1 &3839687136694837674
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3088389645661977682}
   m_Layer: 0
   m_Name: EnemyShip - Dragonfly
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
