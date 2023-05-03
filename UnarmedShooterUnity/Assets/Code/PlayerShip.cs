@@ -14,6 +14,8 @@ public class PlayerShip : Ship
     public Sprite boostReadySprite;
     public Sprite boostNotReadySprite;
     public Image masterUI;
+    public GameObject levelWinUIManager;
+    public GameObject levelLoseUIManager;
 
     public float shakeAmount = 30f;
 
@@ -198,6 +200,9 @@ public class PlayerShip : Ship
         }
 
         DoomguyHealthManager.Instance.ShowCorrectHealhPortait(currentHealth, maxHealth);
+
+        // enable UI for loss
+        if (currentHealth <= 0) levelLoseUIManager.SetActive(true);
     }
 
 

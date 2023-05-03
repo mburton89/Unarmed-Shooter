@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &33714255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3138254611122100011, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
+  m_PrefabInstance: {fileID: 1284372082}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &80540455 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7178625625676693860, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
@@ -825,6 +830,8 @@ MonoBehaviour:
   boostReadySprite: {fileID: 105399684, guid: 7f83c69a104ba5e4b80775a9b24fdb80, type: 3}
   boostNotReadySprite: {fileID: 192172371, guid: 7f83c69a104ba5e4b80775a9b24fdb80, type: 3}
   masterUI: {fileID: 587647112}
+  levelWinUIManager: {fileID: 33714255}
+  levelLoseUIManager: {fileID: 1916175498}
   shakeAmount: 30
 --- !u!58 &1004388757
 CircleCollider2D:
@@ -932,6 +939,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 569614193399464980, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 699121768212726092, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3111657014971451457, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138254611122100011, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3381664527102879464, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688275604329927263, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991135304264844528, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7178625624370017410, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5953,6 +5988,11 @@ MonoBehaviour:
   spawnPivot: {fileID: 628169312}
   currentWave: 1
   startingNumberOfShips: 0
+--- !u!1 &1916175498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3381664527102879464, guid: 6fd602c9bb3a6e54d96ae7f86df24dff, type: 3}
+  m_PrefabInstance: {fileID: 1284372082}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1205711745308461656
 PrefabInstance:
   m_ObjectHideFlags: 0
