@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c511637ced264854fa5cd70b4ddf12c3, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  dialogue:
+  - dialogueText: RUMBLE RUMBLE
+    image: {fileID: 0}
+  - dialogueText: Huh?
+    image: {fileID: 21300000, guid: 9125c204f566db048a92ebcb64d9d14a, type: 3}
+  - dialogueText: SCREECH
+    image: {fileID: 0}
+  - dialogueText: Oop gotta go kill them
+    image: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
+  - dialogueText: Let's do this!
+    image: {fileID: 21300000, guid: ec03f79379868c642b48ae5ddc821b6d, type: 3}
+  - dialogueText: I wonder how this textbox will deal with long dialogue. I will
+      try to type out at least three lines of text.
+    image: {fileID: 21300000, guid: ec03f79379868c642b48ae5ddc821b6d, type: 3}
