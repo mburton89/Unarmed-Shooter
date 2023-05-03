@@ -104,23 +104,21 @@ public class Ship : MonoBehaviour
     public void TakeDamage(int damageToGive)
     {
         //TODO: play getHitSound
-        
-        if(currentArmor>0)
+
+        if (GetComponent<PlayerShip>())
         {
-            currentArmor = currentArmor - damageToGive;
+            if (shieldDeployed) currentArmor = currentArmor - damageToGive;
+            else currentHealth = currentHealth - damageToGive;
         }
         else
         {
-            currentHealth = currentHealth - damageToGive;
+            if (currentArmor > 0) currentArmor = currentArmor - damageToGive;
+            else currentHealth = currentHealth - damageToGive;
         }
 
-        Debug.Log("Armor : " + currentArmor + " -  Health : " + currentHealth);
+        print("Armor: " + currentArmor + " |  Health: " + currentHealth);
 
-
-        if (currentHealth <= 0)
-        {
-            Explode();
-        }
+        if (currentHealth <= 0) Explode();
 
         if (GetComponent<PlayerShip>())
         {
