@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -146,6 +147,10 @@ public class Ship : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
             FindObjectOfType<EnemyShipSpawner>().CountEnemyShips();
+        }
+        if (GetComponent<PlayerShip>())
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
