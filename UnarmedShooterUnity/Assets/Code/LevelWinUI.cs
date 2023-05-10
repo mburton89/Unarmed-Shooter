@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelWinUI : MonoBehaviour
 {
     public Button nextLevelButton, exitButton;
+    Scene scene;
 
     public static LevelWinUI Instance;
 
@@ -24,7 +25,7 @@ public class LevelWinUI : MonoBehaviour
     void NextLevel()
     {
         // currently just loads the main scene again
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(scene.buildIndex + 1);
     }
 
     void ExitLevel()
