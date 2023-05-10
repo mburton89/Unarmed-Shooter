@@ -72,6 +72,11 @@ public class PlayerShip : Ship
         float speed = rb.velocity.magnitude * 100f;
         string speedString = speed.ToString("F");
         SpeedGauge.Instance.speedtext.SetText(speedString + " MPH");
+
+        if (FindObjectsOfType<EnemyShip>().Length == 0)
+        {
+            levelWinUIManager.SetActive(true);
+        }
     }
 
     void HandleInput()
