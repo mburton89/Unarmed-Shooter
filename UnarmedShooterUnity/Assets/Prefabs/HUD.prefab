@@ -684,7 +684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6933919990475613595
 RectTransform:
   m_ObjectHideFlags: 0
@@ -701,7 +701,7 @@ RectTransform:
   - {fileID: 1206549838005920733}
   - {fileID: 6633832695725393528}
   m_Father: {fileID: 7178625624370017410}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -722,8 +722,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevelButton: {fileID: 5760975750668610789}
   exitButton: {fileID: 1169778725379732864}
-  winText: {fileID: 2269394030234493449}
-  winQuote: {fileID: 0}
 --- !u!1 &3381664527102879464
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7886127092909893274
 RectTransform:
   m_ObjectHideFlags: 0
@@ -757,7 +755,7 @@ RectTransform:
   - {fileID: 3144749542913139909}
   - {fileID: 9125107435419747782}
   m_Father: {fileID: 7178625624370017410}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

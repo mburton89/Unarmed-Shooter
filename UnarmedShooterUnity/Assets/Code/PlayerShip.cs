@@ -16,10 +16,6 @@ public class PlayerShip : Ship
     public Image masterUI;
 
     public float shakeAmount = 30f;
-    public Image boostImage;
-    public Sprite boostReadySprite;
-    public Sprite boostNotReadySprite;
-    public Image masterUI;
     public GameObject levelWinUIManager;
     public GameObject levelLoseUIManager;
 
@@ -230,17 +226,6 @@ public class PlayerShip : Ship
 
         float shakeTimer = 0;
         Vector3 originalPosition = masterUI.rectTransform.localPosition;
-
-
-        while (shakeTimer < .25f)
-        {
-            float randomX = Random.Range(originalPosition.x - shakeAmount, originalPosition.x);
-			
-            float randomY = Random.Range(originalPosition.y, originalPosition.y + shakeAmount);
-		}
-        float shakeTimer = 0;
-        Vector3 originalPosition = masterUI.rectTransform.localPosition;
-
 
         while (shakeTimer < .25f)
         {
