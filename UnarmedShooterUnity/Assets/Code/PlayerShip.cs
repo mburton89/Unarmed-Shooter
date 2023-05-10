@@ -16,6 +16,12 @@ public class PlayerShip : Ship
     public Image masterUI;
 
     public float shakeAmount = 30f;
+    public Image boostImage;
+    public Sprite boostReadySprite;
+    public Sprite boostNotReadySprite;
+    public Image masterUI;
+    public GameObject levelWinUIManager;
+    public GameObject levelLoseUIManager;
 
     bool isUIMoving = false;
     private void Start()
@@ -71,6 +77,11 @@ public class PlayerShip : Ship
         float speed = rb.velocity.magnitude * 100f;
         string speedString = speed.ToString("F");
         SpeedGauge.Instance.speedtext.SetText(speedString + " MPH");
+
+        if (FindObjectsOfType<EnemyShip>().Length == 0)
+        {
+            levelWinUIManager.SetActive(true);
+        }
     }
 
     void HandleInput()
@@ -199,6 +210,9 @@ public class PlayerShip : Ship
         }
 
         DoomguyHealthManager.Instance.ShowCorrectHealhPortait(currentHealth, maxHealth);
+
+        // enable UI for loss
+        if (currentHealth <= 0) levelLoseUIManager.SetActive(true);
     }
 
 
@@ -221,27 +235,25 @@ public class PlayerShip : Ship
         while (shakeTimer < .25f)
         {
             float randomX = Random.Range(originalPosition.x - shakeAmount, originalPosition.x);
-
+			
             float randomY = Random.Range(originalPosition.y, originalPosition.y + shakeAmount);
+		}
+        float shakeTimer = 0;
+        Vector3 originalPosition = masterUI.rectTransform.localPosition;
 
 
-
-            //set the position of masterUI to random position
+        while (shakeTimer < .25f)
+        {
+            float randomX=Random.Range(originalPosition.x - shakeAmount, originalPosition.x);
+            float randomY = Random.Range(originalPosition.y, originalPosition.y + shakeAmount);
             Vector3 randomPosition = new Vector3(randomX, randomY);
-
             masterUI.rectTransform.localPosition = randomPosition;
-
-
             shakeTimer = shakeTimer + Time.deltaTime;
             yield return new WaitForEndOfFrame();
-
-
         }
 
         masterUI.rectTransform.localPosition = originalPosition;
         //set the position of th emasterUI to the original position
         isUIMoving = false;
     }
-
-
 }
