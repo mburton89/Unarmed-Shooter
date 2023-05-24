@@ -55,13 +55,16 @@ public class Ship : MonoBehaviour
         }
         powerUpsPrefabs = Resources.LoadAll<GameObject>("PowerUps");
 
+        maxSpeed = maxSpeed * 200;
+        acceleration = acceleration * 200;
+
     }
 
     private void FixedUpdate()
     {
         if (rb.velocity.magnitude > maxSpeed)
         {
-            rb.velocity = rb.velocity.normalized * maxSpeed;
+            rb.velocity = rb.velocity.normalized * maxSpeed * Time.deltaTime;
         }
         //increments up current boost energy if not yet full
         if (currentBoostEnergy < maxBoost)
@@ -80,7 +83,7 @@ public class Ship : MonoBehaviour
     {
         if (canMove)
         {
-            rb.AddForce(transform.up * acceleration);
+            rb.AddForce(transform.up * acceleration * Time.deltaTime);
             if (thrustParticles != null) { thrustParticles.Emit(1); }
             
         }  
